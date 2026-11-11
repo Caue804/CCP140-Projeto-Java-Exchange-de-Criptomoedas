@@ -39,8 +39,8 @@ public class Extrato extends javax.swing.JFrame {
         pnlPrincipal.setName(""); // NOI18N
         pnlPrincipal.setPreferredSize(new java.awt.Dimension(1001, 563));
 
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblTitulo.setText("Título");
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTitulo.setText("Extrato da Conta");
 
         btnVoltar.setBackground(new java.awt.Color(204, 204, 204));
         btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -56,7 +56,7 @@ public class Extrato extends javax.swing.JFrame {
         pnlPrincipal.setLayout(pnlPrincipalLayout);
         pnlPrincipalLayout.setHorizontalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
+            .addGroup(pnlPrincipalLayout.createSequentialGroup()
                 .addContainerGap(79, Short.MAX_VALUE)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(543, 543, 543)

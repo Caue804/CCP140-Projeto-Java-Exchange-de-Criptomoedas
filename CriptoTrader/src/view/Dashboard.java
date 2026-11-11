@@ -1,4 +1,5 @@
 package view;
+import controller.ConfirmaSenha;
 import controller.ControleDashboard;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -410,8 +411,12 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExtratoActionPerformed
-        Extrato telaExtrato = new Extrato();
-        telaExtrato.setVisible(true);
+        
+        if (ConfirmaSenha.confirmar(this, c.getInvestidorLogado())) { //chama o metodo de confirmar, nessa tela, com esse invest
+            Extrato telaExtrato = new Extrato(); //se passar, instancia e abre a tela
+            telaExtrato.setVisible(true);
+        }
+
     }//GEN-LAST:event_btnExtratoActionPerformed
 
     private void btnAttCotacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttCotacaoActionPerformed

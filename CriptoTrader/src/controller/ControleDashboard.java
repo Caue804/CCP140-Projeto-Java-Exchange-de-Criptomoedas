@@ -24,6 +24,8 @@ public class ControleDashboard {
     private String cpfLogado;             // CPF do investidor que logou
     private Investidor investidorLogado;  // Objeto Investidor que sera montado com o cpf
 
+    // ================== Construtor ==================
+    //(precisa da tela que vai controlar e o cpf de quem logou para puxar os dados)
 
     public ControleDashboard(Dashboard tela, String cpfLogado) {
         this.tela = tela;
@@ -31,7 +33,15 @@ public class ControleDashboard {
         carregarDadosInvestidor();
     }
 
+    // ================== Getter ==================
+
+    public Investidor getInvestidorLogado() {
+       return investidorLogado;
+    }
+
+    // ================== Métodos ==================
     // Consulta os dados do usuário logado e monta o objeto
+
     private void carregarDadosInvestidor() {
         String sql = "SELECT nome, cpf, senha, saldo_reais, saldo_bitcoin, saldo_ethereum, saldo_ripple FROM investidor WHERE cpf = ?";
         
@@ -98,16 +108,21 @@ public class ControleDashboard {
             dao.salvarCotacao(btc);
             dao.salvarCotacao(eth);
             dao.salvarCotacao(xrp);
-            
-            // Cria a mensagem comparativa de forma sucinta
+
+            conn.close(); //fecha a comunicação
+
+            //Mensagem que vai no aviso sobre quanto variou
             String mensagem = String.format(
                 "Cotações atualizadas com sucesso!\n\n" +
-                "BTC:   R$ %.2f  =>  R$ %.2f\n" + "ETH:    R$ %.2f  =>  R$ %.2f\n" + "XRP:   R$ %.2f  =>  R$ %.2f",
-                btcAntigo, btc.getCotacao(), ethAntigo, eth.getCotacao(), xrpAntigo, xrp.getCotacao()
+                "BTC (%.2f%%):   R$ %.2f  =>  R$ %.2f \n" +
+                "ETH (%.2f%%):   R$ %.2f  =>  R$ %.2f \n" +
+                "XRP (%.2f%%):   R$ %.2f  =>  R$ %.2f",
+                ((btc.getCotacao() - btcAntigo) / btcAntigo) * 100, btcAntigo, btc.getCotacao(),
+                ((eth.getCotacao() - ethAntigo) / ethAntigo) * 100, ethAntigo, eth.getCotacao(), 
+                ((xrp.getCotacao() - xrpAntigo) / xrpAntigo) * 100, xrpAntigo, xrp.getCotacao() 
             );
 
-            conn.close();
-
+            
         // SUCESSO
             JOptionPane.showMessageDialog(tela, 
                 mensagem, 

@@ -25,3 +25,4 @@ replay_pid*
 /CriptoTrader/nbproject/private/
 /CriptoTrader/build/
 /CriptoTrader/dist/
+!CriptoTrader/lib/*.jar
