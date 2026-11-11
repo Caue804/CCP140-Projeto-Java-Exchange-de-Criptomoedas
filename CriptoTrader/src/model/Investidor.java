@@ -26,7 +26,8 @@ public class Investidor {
     public Investidor(String nome, String cpf, String senha, Carteira carteira) { 
         this.nome = nome; 
         this.cpf = cpf; 
-        this.senha = senha; this.carteira = carteira; 
+        this.senha = senha; 
+        this.carteira = carteira; 
     } 
     
     // ================== Getters e Setters ==================
