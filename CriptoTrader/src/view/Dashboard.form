@@ -203,7 +203,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblTituloSaldoReais" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblSaldoReais" pref="56" max="32767" attributes="0"/>
+                      <Component id="lblSaldoReais" pref="60" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -263,7 +263,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblTituloSaldoBit" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblSaldoBtc" pref="56" max="32767" attributes="0"/>
+                      <Component id="lblSaldoBtc" pref="60" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -309,7 +309,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lblTituloSaldoEth" min="-2" pref="129" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
                           </Group>
                           <Component id="lblSaldoEth" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -323,7 +323,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblTituloSaldoEth" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblSaldoEth" pref="56" max="32767" attributes="0"/>
+                      <Component id="lblSaldoEth" pref="60" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -383,7 +383,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblTituloSaldoXrp" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblSaldoXrp" pref="56" max="32767" attributes="0"/>
+                      <Component id="lblSaldoXrp" pref="60" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
               </Group>

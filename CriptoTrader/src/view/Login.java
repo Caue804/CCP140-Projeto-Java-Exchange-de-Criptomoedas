@@ -197,7 +197,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
-        // TODO add your handling code here:
+        txtSenha.requestFocus();
     }//GEN-LAST:event_txtCpfActionPerformed
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
@@ -205,7 +205,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
+        btnEnter.doClick();
     }//GEN-LAST:event_txtSenhaActionPerformed
 
             

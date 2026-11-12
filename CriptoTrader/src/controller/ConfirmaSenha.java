@@ -15,7 +15,7 @@ public class ConfirmaSenha {
         JPasswordField campo = new JPasswordField();
  
         int opcao = JOptionPane.showConfirmDialog(telaSenha,
-                new Object[]{"Digite sua senha (6 dígitos):", campo},
+                new Object[]{"Confirme sua senha: ", campo},
                 "Confirmação de senha",
                 JOptionPane.OK_CANCEL_OPTION, //botão de cancelar
                 JOptionPane.PLAIN_MESSAGE);
