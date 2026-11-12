@@ -44,7 +44,7 @@ public class ControleExtrato {
                         .substring(0, 16); // Pega até os minutos (HH:MM)
                 
                 // Formatação principal semelhante à imagem
-                sb.append(String.format("| %s   | %c   | %9.2f   | %-4s   | CT: %7.2f   | TX: %4.2f   | REAL: %10.2f   | BTC: %7.4f   | ETH: %7.4f   | XRP: %6.1f  |\n",
+                sb.append(String.format("| %-16s | %c | %13.6f | %-4s | CT: %9.2f | TX: %5.2f | REAL: %13.2f | BTC: %8.6f | ETH: %8.6f | XRP: %8.6f |\n",
                     dataFormatada, 
                     op.getTipo(), 
                     op.getQuantidade(), //troca moeda e quantidade de lugar

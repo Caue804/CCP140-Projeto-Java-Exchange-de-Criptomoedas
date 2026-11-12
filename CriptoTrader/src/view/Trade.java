@@ -310,7 +310,7 @@ public class Trade extends javax.swing.JFrame {
         lblQuantidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblQuantidade.setText("Quantidade");
 
-        ftxtValorDeposito.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        ftxtValorDeposito.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.000000"))));
         ftxtValorDeposito.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         ftxtValorDeposito.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ftxtValorDeposito.addActionListener(new java.awt.event.ActionListener() {
