@@ -1,21 +1,92 @@
 package view;
+import controller.ConfirmaSenha;
 import controller.ControleCaixa;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import model.Investidor;
 
 public class Caixa extends javax.swing.JFrame {
 
 
-    public Caixa() {
+    public Caixa(Investidor investidorLogado, Dashboard dashboard) {
         initComponents();
-
+        c = new ControleCaixa(this, investidorLogado, dashboard);
     }
 
     private ControleCaixa c;
 
     // ================== Getters ==================
+
+    public ControleCaixa getC() {
+        return c;
+    }
+
+    public JButton getBtnDepositar() {
+        return btnDepositar;
+    }
+
+    public JButton getBtnSacar() {
+        return btnSacar;
+    }
+
+    public JButton getBtnVoltar() {
+        return btnVoltar;
+    }
+
+    public JFormattedTextField getFtxtValorDeposito() {
+        return ftxtValorDeposito;
+    }
+
+    public JFormattedTextField getFtxtValorSaque() {
+        return ftxtValorSaque;
+    }
+
+    public JTabbedPane getjTabbedPane1() {
+        return jTabbedPane1;
+    }
+
+    public JLabel getLblSaldoDeposito() {
+        return lblSaldoDeposito;
+    }
+
+    public JLabel getLblSaldoSaque() {
+        return lblSaldoSaque;
+    }
+
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
+
+    public JLabel getLblValorDeposito() {
+        return lblValorDeposito;
+    }
+
+    public JLabel getLblValorSaldoDeposito() {
+        return lblValorSaldoDeposito;
+    }
+
+    public JLabel getLblValorSaldoSaque() {
+        return lblValorSaldoSaque;
+    }
+
+    public JLabel getLblValorSaque() {
+        return lblValorSaque;
+    }
+
+    public JPanel getPnlDepositar() {
+        return pnlDepositar;
+    }
+
+    public JPanel getPnlPrincipal() {
+        return pnlPrincipal;
+    }
+
+    public JPanel getPnlSacar() {
+        return pnlSacar;
+    }
 
     
     
@@ -38,7 +109,7 @@ public class Caixa extends javax.swing.JFrame {
         lblValorSaldoSaque = new javax.swing.JLabel();
         btnSacar = new javax.swing.JButton();
         lblValorSaque = new javax.swing.JLabel();
-        ftxtValorSaque2 = new javax.swing.JFormattedTextField();
+        ftxtValorSaque = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Caixa_(Sacar/Depositar)");
@@ -106,8 +177,7 @@ public class Caixa extends javax.swing.JFrame {
                 .addGap(129, 129, 129)
                 .addGroup(pnlDepositarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.CENTER, pnlDepositarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(lblValorSaldoDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDepositar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDepositar, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                         .addComponent(lblSaldoDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ftxtValorDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlDepositarLayout.createSequentialGroup()
@@ -115,6 +185,10 @@ public class Caixa extends javax.swing.JFrame {
                         .addComponent(lblValorDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(135, 135, 135))
+            .addGroup(pnlDepositarLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(lblValorSaldoDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlDepositarLayout.setVerticalGroup(
             pnlDepositarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,12 +229,12 @@ public class Caixa extends javax.swing.JFrame {
         lblValorSaque.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblValorSaque.setText("Valor (R$)");
 
-        ftxtValorSaque2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
-        ftxtValorSaque2.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        ftxtValorSaque2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        ftxtValorSaque2.addActionListener(new java.awt.event.ActionListener() {
+        ftxtValorSaque.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        ftxtValorSaque.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        ftxtValorSaque.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ftxtValorSaque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftxtValorSaque2ActionPerformed(evt);
+                ftxtValorSaqueActionPerformed(evt);
             }
         });
 
@@ -172,15 +246,18 @@ public class Caixa extends javax.swing.JFrame {
                 .addGap(129, 129, 129)
                 .addGroup(pnlSacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.CENTER, pnlSacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(lblValorSaldoSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSacar, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                         .addComponent(lblSaldoSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ftxtValorSaque2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ftxtValorSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlSacarLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(lblValorSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(135, 135, 135))
+            .addGroup(pnlSacarLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(lblValorSaldoSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlSacarLayout.setVerticalGroup(
             pnlSacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +269,7 @@ public class Caixa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblValorSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ftxtValorSaque2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ftxtValorSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
                 .addComponent(btnSacar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78))
@@ -237,15 +314,19 @@ public class Caixa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarActionPerformed
-        // TODO add your handling code here:
+        if (ConfirmaSenha.confirmar(this, c.getInvestidorLogado())) { //chama o metodo de confirmar, nessa tela, com esse invest
+        c.sacar();
+        }
     }//GEN-LAST:event_btnSacarActionPerformed
 
-    private void ftxtValorSaque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtValorSaque2ActionPerformed
+    private void ftxtValorSaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtValorSaqueActionPerformed
         btnSacar.requestFocus();
-    }//GEN-LAST:event_ftxtValorSaque2ActionPerformed
+    }//GEN-LAST:event_ftxtValorSaqueActionPerformed
 
     private void btnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositarActionPerformed
-        // TODO add your handling code here:
+        if (ConfirmaSenha.confirmar(this, c.getInvestidorLogado())) { //chama o metodo de confirmar, nessa tela, com esse invest
+        c.depositar();
+        }
     }//GEN-LAST:event_btnDepositarActionPerformed
 
     private void ftxtValorDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtValorDepositoActionPerformed
@@ -257,7 +338,7 @@ public class Caixa extends javax.swing.JFrame {
     private javax.swing.JButton btnSacar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JFormattedTextField ftxtValorDeposito;
-    private javax.swing.JFormattedTextField ftxtValorSaque2;
+    private javax.swing.JFormattedTextField ftxtValorSaque;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblSaldoDeposito;
     private javax.swing.JLabel lblSaldoSaque;

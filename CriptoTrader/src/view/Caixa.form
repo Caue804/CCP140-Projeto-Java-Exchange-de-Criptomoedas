@@ -140,8 +140,7 @@
                           <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="2" groupAlignment="2" attributes="0">
-                                  <Component id="lblValorSaldoDeposito" alignment="2" min="-2" pref="381" max="-2" attributes="0"/>
-                                  <Component id="btnDepositar" alignment="2" max="32767" attributes="0"/>
+                                  <Component id="btnDepositar" alignment="2" pref="393" max="32767" attributes="0"/>
                                   <Component id="lblSaldoDeposito" alignment="2" min="-2" pref="249" max="-2" attributes="0"/>
                                   <Component id="ftxtValorDeposito" alignment="2" min="-2" pref="375" max="-2" attributes="0"/>
                               </Group>
@@ -152,6 +151,11 @@
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="lblValorSaldoDeposito" min="-2" pref="531" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -247,10 +251,9 @@
                           <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="2" groupAlignment="2" attributes="0">
-                                  <Component id="lblValorSaldoSaque" alignment="2" min="-2" pref="381" max="-2" attributes="0"/>
-                                  <Component id="btnSacar" alignment="2" max="32767" attributes="0"/>
+                                  <Component id="btnSacar" alignment="2" pref="393" max="32767" attributes="0"/>
                                   <Component id="lblSaldoSaque" alignment="2" min="-2" pref="249" max="-2" attributes="0"/>
-                                  <Component id="ftxtValorSaque2" alignment="2" min="-2" pref="375" max="-2" attributes="0"/>
+                                  <Component id="ftxtValorSaque" alignment="2" min="-2" pref="375" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -259,6 +262,11 @@
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="lblValorSaldoSaque" min="-2" pref="555" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -272,7 +280,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="lblValorSaque" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="ftxtValorSaque2" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="ftxtValorSaque" min="-2" pref="47" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                           <Component id="btnSacar" min="-2" pref="66" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
@@ -322,7 +330,7 @@
                     <Property name="text" type="java.lang.String" value="Valor (R$)"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="ftxtValorSaque2">
+                <Component class="javax.swing.JFormattedTextField" name="ftxtValorSaque">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                       <Format format="#,##0.00" subtype="-1" type="0"/>
@@ -333,7 +341,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ftxtValorSaque2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ftxtValorSaqueActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

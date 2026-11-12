@@ -30,19 +30,20 @@ public class ControleDashboard {
     public ControleDashboard(Dashboard tela, String cpfLogado) {
         this.tela = tela;
         this.cpfLogado = cpfLogado;
-        carregarDadosInvestidor();
     }
 
     // ================== Getter ==================
 
+    // Retorna o investidor logado para outras telas que precisarem
     public Investidor getInvestidorLogado() {
-       return investidorLogado;
+        return investidorLogado;
     }
 
     // ================== Métodos ==================
+
     // Consulta os dados do usuário logado e monta o objeto
 
-    private void carregarDadosInvestidor() {
+    public void carregarDadosInvestidor() {
         String sql = "SELECT nome, cpf, senha, saldo_reais, saldo_bitcoin, saldo_ethereum, saldo_ripple FROM investidor WHERE cpf = ?";
         
         try {
@@ -84,6 +85,15 @@ public class ControleDashboard {
         }
     }
     
+    public void atualizarSaldos() {
+        if (investidorLogado != null) {
+            tela.getLblSaldoReais().setText(String.format("R$ %.2f", investidorLogado.getCarteira().getSaldoReais()));
+            tela.getLblSaldoBtc().setText(String.format("%.4f", investidorLogado.getCarteira().getSaldoBitcoin()));
+            tela.getLblSaldoEth().setText(String.format("%.4f", investidorLogado.getCarteira().getSaldoEthereum()));
+            tela.getLblSaldoXrp().setText(String.format("%.4f", investidorLogado.getCarteira().getSaldoRipple()));
+        }
+    }
+
     public void atualizarCotacoes() {
         try {
             Connection conn = new Conexao().getConnection();

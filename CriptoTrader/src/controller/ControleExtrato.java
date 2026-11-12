@@ -1,14 +1,17 @@
 package controller;
 
-import dao.Conexao;
-import dao.OperacaoDAO;
-import model.Investidor;
-import view.Extrato;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+
+import dao.Conexao;
+import dao.OperacaoDAO;
+import java.util.List;
+import model.Investidor;
+import model.Operacao;
+import view.Extrato;
+
 
 public class ControleExtrato {
 
@@ -18,45 +21,44 @@ public class ControleExtrato {
     public ControleExtrato(Extrato view, Investidor investidor) {
         this.view = view;
         this.investidor = investidor;
-        gerarExtrato(); // Já carrega e exibe o extrato assim que a tela abre
+        gerarExtratoLista(); 
     }
 
-    private void gerarExtrato() {
+    private void gerarExtratoLista() {
         try {
             Connection conn = new Conexao().getConnection();
             OperacaoDAO dao = new OperacaoDAO(conn);
             
-            // Busca as operações do banco de dados usando o CPF do investidor logado
-            ResultSet rs = dao.consultarExtrato(investidor.getCpf());
-
+            // Busca as operações do banco desse cpf
+            List<Operacao> lista = dao.listarPorCpf(investidor.getCpf());
+            //cabeçalho do extrato
             StringBuilder sb = new StringBuilder();
             sb.append("Nome: ").append(investidor.getNome()).append("\n");
             sb.append("CPF: ").append(investidor.getCpf()).append("\n\n");
             
-            // Cabeçalho da tabela
-            sb.append(String.format("%-19s | %-2s | %-10s | %-5s | %-9s | %-6s | %-10s | %-8s | %-8s | %-8s\n", 
-                "DATA/HORA", "OP", "VALOR", "MOEDA", "COTACAO", "TAXA", "REAL", "BTC", "ETH", "XRP"));
-            sb.append("-----------------------------------------------------------------------------------------------------------------\n");
-
-            // Percorrendo o ResultSet ou lista de operações vindas do banco
-            while (rs.next()) {
-                sb.append(String.format("%-19s | %-2s | %10.2f | %-5s | %9.2f | %6.2f | %10.2f | %8.4f | %8.4f | %8.2f\n",
-                    rs.getString("data_hora"), 
-                    rs.getString("tipo"), 
-                    rs.getDouble("valor_reais"), 
-                    rs.getString("moeda"), 
-                    rs.getDouble("cotacao_unitaria"), 
-                    rs.getDouble("taxa"), 
-                    rs.getDouble("saldo_reais"), 
-                    rs.getDouble("saldo_bitcoin"), 
-                    rs.getDouble("saldo_ethereum"), 
-                    rs.getDouble("saldo_ripple")));
+            // Percorre a lista de operações e aplica a formatação exata da imagem
+            for (Operacao op : lista) {
+                // Formato de data: DD-MM-YYYY HH:MM
+                String dataFormatada = op.getDataHora().toString()
+                        .replace("T", " ")                      
+                        .substring(0, 16); // Pega até os minutos (HH:MM)
+                
+                // Formatação principal semelhante à imagem
+                sb.append(String.format("| %s   | %c   | %9.2f   | %-4s   | CT: %7.2f   | TX: %4.2f   | REAL: %10.2f   | BTC: %7.4f   | ETH: %7.4f   | XRP: %6.1f  |\n",
+                    dataFormatada, 
+                    op.getTipo(), 
+                    op.getQuantidade(), //troca moeda e quantidade de lugar
+                    op.getMoeda(),      //troca moeda e quantidade de lugar
+                    op.getCotacao(), 
+                    op.getTaxa(), 
+                    op.getCarteira().getSaldoReais(), 
+                    op.getCarteira().getSaldoBitcoin(), 
+                    op.getCarteira().getSaldoEthereum(), 
+                    op.getCarteira().getSaldoRipple()
+                ));
             }
 
-            // Aplica o texto completo na tela (substitua getTxtExtrato() pelo nome real do seu JTextArea)
             view.getTxtExtrato().setText(sb.toString());
-            
-            // Retorna a barra de rolagem para o topo
             view.getTxtExtrato().setCaretPosition(0);
 
             conn.close();

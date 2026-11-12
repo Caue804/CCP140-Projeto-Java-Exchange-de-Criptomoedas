@@ -3,19 +3,45 @@ import controller.ControleExtrato;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import model.Investidor;
 
 public class Extrato extends javax.swing.JFrame {
 
 
-    public Extrato() {
+    public Extrato(Investidor investidorLogado) {
         initComponents();
-
+        c = new ControleExtrato(this, investidorLogado);
     }
 
     private ControleExtrato c;
 
     // ================== Getters ==================
+
+    public ControleExtrato getC() {
+        return c;
+    }
+
+    public JButton getBtnVoltar() {
+        return btnVoltar;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
+
+    public JPanel getPnlPrincipal() {
+        return pnlPrincipal;
+    }
+
+    public JTextArea getTxtExtrato() {
+        return txtExtrato;
+    }
 
     
     

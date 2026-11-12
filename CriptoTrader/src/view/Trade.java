@@ -1,21 +1,157 @@
 package view;
+import controller.ConfirmaSenha;
 import controller.ControleTrade;
+import controller.ValidaCampos;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JToggleButton;
 import model.Investidor;
 
 public class Trade extends javax.swing.JFrame {
 
 
-    public Trade() {
+    public Trade(Investidor investidorLogado, Dashboard dashboard) {
         initComponents();
-
+        c = new ControleTrade(this, investidorLogado, dashboard);
     }
 
     private ControleTrade c;
+    
 
     // ================== Getters ==================
+
+    public ControleTrade getC() {
+        return c;
+    }
+
+    public JToggleButton getBtnComprar() {
+        return btnComprar;
+    }
+
+    public JButton getBtnExecutarOperacao() {
+        return btnExecutarOperacao;
+    }
+
+    public JToggleButton getBtnVender() {
+        return btnVender;
+    }
+
+    public JButton getBtnVoltar() {
+        return btnVoltar;
+    }
+
+    public ButtonGroup getButtonGroup1() {
+        return buttonGroup1;
+    }
+
+    public JFormattedTextField getFtxtValorDeposito() {
+        return ftxtValorDeposito;
+    }
+
+    public JComboBox<String> getjComboBox1() {
+        return simboloCripto;
+    }
+
+    public JSeparator getjSeparator1() {
+        return jSeparator1;
+    }
+
+    public JSeparator getjSeparator2() {
+        return jSeparator2;
+    }
+
+    public JSeparator getjSeparator3() {
+        return jSeparator3;
+    }
+
+    public JSeparator getjSeparator4() {
+        return jSeparator4;
+    }
+
+    public JLabel getLblBtc() {
+        return lblBtc;
+    }
+
+    public JLabel getLblCotacaoAtual() {
+        return lblCotacaoAtual;
+    }
+
+    public JLabel getLblEth() {
+        return lblEth;
+    }
+
+    public JLabel getLblQuantidade() {
+        return lblQuantidade;
+    }
+
+    public JLabel getLblSeleciona() {
+        return lblSeleciona;
+    }
+
+    public JLabel getLblSubtotal() {
+        return lblSubtotal;
+    }
+
+    public JLabel getLblSubtotalValor() {
+        return lblSubtotalValor;
+    }
+
+    public JLabel getLblTaxa() {
+        return lblTaxa;
+    }
+
+    public JLabel getLblTaxaValor() {
+        return lblTaxaValor;
+    }
+
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
+
+    public JLabel getLblTotal() {
+        return lblTotal;
+    }
+
+    public JLabel getLblTotalValor() {
+        return lblTotalValor;
+    }
+
+    public JLabel getLblValorBtc() {
+        return lblValorBtc;
+    }
+
+    public JLabel getLblValorEth() {
+        return lblValorEth;
+    }
+
+    public JLabel getLblValorXrp() {
+        return lblValorXrp;
+    }
+
+    public JLabel getLblXrp() {
+        return lblXrp;
+    }
+
+    public JPanel getPnlAreaCotacoes() {
+        return pnlAreaCotacoes;
+    }
+
+    public JPanel getPnlAreaTrade() {
+        return pnlAreaTrade;
+    }
+
+    public JPanel getPnlPrincipal() {
+        return pnlPrincipal;
+    }
+
+    public JPanel getPnlSubtotal() {
+        return pnlSubtotal;
+    }
 
     
     
@@ -53,7 +189,7 @@ public class Trade extends javax.swing.JFrame {
         btnComprar = new javax.swing.JToggleButton();
         btnVender = new javax.swing.JToggleButton();
         btnExecutarOperacao = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        simboloCripto = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trade_Cripto");
@@ -193,7 +329,7 @@ public class Trade extends javax.swing.JFrame {
 
         lblTaxa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblTaxa.setForeground(new java.awt.Color(223, 9, 9));
-        lblTaxa.setText("Taxa (X%):");
+        lblTaxa.setText("Taxa (%):");
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         lblTotal.setText("Total:");
@@ -266,15 +402,14 @@ public class Trade extends javax.swing.JFrame {
         btnExecutarOperacao.setBackground(new java.awt.Color(51, 102, 255));
         btnExecutarOperacao.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnExecutarOperacao.setText("Executar Operação");
-        btnExecutarOperacao.setActionCommand("Executar Operação");
         btnExecutarOperacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExecutarOperacaoActionPerformed(evt);
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BTC", "ETH", "XRP" }));
+        simboloCripto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        simboloCripto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BTC", "ETH", "XRP" }));
 
         javax.swing.GroupLayout pnlAreaTradeLayout = new javax.swing.GroupLayout(pnlAreaTrade);
         pnlAreaTrade.setLayout(pnlAreaTradeLayout);
@@ -292,7 +427,7 @@ public class Trade extends javax.swing.JFrame {
                         .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnExecutarOperacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(simboloCripto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         pnlAreaTradeLayout.setVerticalGroup(
@@ -305,7 +440,7 @@ public class Trade extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(lblSeleciona, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(simboloCripto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(lblQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -360,10 +495,19 @@ public class Trade extends javax.swing.JFrame {
 
     private void ftxtValorDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtValorDepositoActionPerformed
         btnExecutarOperacao.requestFocus();
+        boolean compra = btnComprar.isSelected();
+        String simbolo = simboloCripto.getSelectedItem().toString();
+        double quantidade = ValidaCampos.lerNumero(ftxtValorDeposito); // Já tratamos validações de input
+        c.atualizarResumo(compra, simbolo, quantidade);
     }//GEN-LAST:event_ftxtValorDepositoActionPerformed
 
     private void btnExecutarOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExecutarOperacaoActionPerformed
-        // TODO add your handling code here:
+        if (ConfirmaSenha.confirmar(this, c.getInvestidorLogado())) { //chama o metodo de confirmar, nessa tela, com esse invest
+            boolean compra = btnComprar.isSelected();
+            String simbolo = simboloCripto.getSelectedItem().toString();
+            double quantidade = ValidaCampos.lerNumero(ftxtValorDeposito); // Já tratamos validações de input
+            c.executarOrdem(compra, simbolo, quantidade);
+        }
     }//GEN-LAST:event_btnExecutarOperacaoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -373,7 +517,6 @@ public class Trade extends javax.swing.JFrame {
     private javax.swing.JButton btnVoltar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JFormattedTextField ftxtValorDeposito;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -398,6 +541,7 @@ public class Trade extends javax.swing.JFrame {
     private javax.swing.JPanel pnlAreaTrade;
     private javax.swing.JPanel pnlPrincipal;
     private javax.swing.JPanel pnlSubtotal;
+    private javax.swing.JComboBox<String> simboloCripto;
     // End of variables declaration//GEN-END:variables
 
 }

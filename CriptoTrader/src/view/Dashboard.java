@@ -12,9 +12,16 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard(String cpf) {
         initComponents();
         c = new ControleDashboard(this, cpf);
+        c.carregarDadosInvestidor();
+        investidorLogado = c.getInvestidorLogado();
     }
 
     private ControleDashboard c;
+    private Investidor investidorLogado; // Objeto Investidor que sera montado com o cpf
+
+    public void atualizarSaldos() {
+        c.atualizarSaldos();
+    }
 
     // ================== Getters ==================
 
@@ -395,12 +402,12 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTradeActionPerformed
-        Trade telaTrade = new Trade();
+        Trade telaTrade = new Trade(investidorLogado, this);
         telaTrade.setVisible(true); 
     }//GEN-LAST:event_btnTradeActionPerformed
 
     private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        Caixa telaCaixa = new Caixa();
+        Caixa telaCaixa = new Caixa(investidorLogado, this);
         telaCaixa.setVisible(true); 
     }//GEN-LAST:event_btnCaixaActionPerformed
 
@@ -413,7 +420,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void btnExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExtratoActionPerformed
         
         if (ConfirmaSenha.confirmar(this, c.getInvestidorLogado())) { //chama o metodo de confirmar, nessa tela, com esse invest
-            Extrato telaExtrato = new Extrato(); //se passar, instancia e abre a tela
+            Extrato telaExtrato = new Extrato(investidorLogado); //se passar, instancia e abre a tela
             telaExtrato.setVisible(true);
         }
 
